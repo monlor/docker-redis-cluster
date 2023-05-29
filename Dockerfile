@@ -30,7 +30,7 @@ RUN wget -qO redis.tar.gz https://github.com/redis/redis/tarball/${redis_version
     && tar xfz redis.tar.gz -C / \
     && mv /redis-* /redis
 
-RUN (cd /redis && make)
+RUN (cd /redis && JEMALLOC_CONFIGURE_OPTS="--with-lg-page=16" make)
 
 RUN mkdir /redis-conf && mkdir /redis-data
 
